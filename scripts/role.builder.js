@@ -1,4 +1,7 @@
 var roleBuilder = {
+    
+    'typeID': 'builder',
+    'typeBuild': [CARRY, CARRY, MOVE, WORK, WORK],
 
     /** @param {Creep} creep **/
     run: function(creep) {

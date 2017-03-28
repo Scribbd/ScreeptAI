@@ -1,4 +1,5 @@
 var roleCommon = {
+    
     run: function(creep) {
         // Report and act on Death
         if(creep.ticksToLive <= 1) {
