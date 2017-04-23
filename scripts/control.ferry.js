@@ -3,41 +3,34 @@ var helperCreeps = require('helper.creeps');
  * Ferry control, system for harvesters to call ferries to their side to get the energy out.
  */
 var controlFerry = {
-    
+
     run: function() {
-        
-        
-        if(Memory.ferryControl == null) {
+
+
+        if(Memory.empire.control.ferryInterval === undefinded) {
             console.log('Setting up ferryControl for the first time');
-            Memory.ferryControl = {
-                'delayCount': 0,
-                'delay': 10,
-                'priorityQueue': [],
-                'ferries': {}
-            }
+            Memory.empire.control.ferryInterval = 10;
+            Memory.empire.control.ferryShift = 2;
         }
-        
+
         // Process scheduled stuff
-        if (Memory.ferryControl.delayCount >= Memory.ferryControl.delay) {
-            
-            
-            
-            Memory.ferryControl.delayCount = 0;
-        } else {
-            Memory.ferryControl.delayCount++;
+        if ((Memory.empire.control.count + Memory.empire.control.ferryShift) % Memory.empire.control.ferryInterval == 0) {
+            console.log('controlFerry scheduled run!');
+
+
         }
         // Process priority queue
         if(Memory.ferryControl.priorityQueue.length > 0) {
-            
+
         }
     },
-    
-    submitPriority: function(containerID) {
-        Memory.ferryControl.priorityQueue.push(containerID);
+
+    submitPriority: function(container) {
+        Memory.ferryControl.priorityQueue.push(container.id);
     },
-    
-    clearPriority: function(containerID) {
-        if(Memory.ferryControl.priorityQueue[0] == containerID) {
+
+    clearPriority: function(container) {
+        if(Memory.ferryControl.priorityQueue[0] == container.id) {
             Memory.ferryControl.priorityQueue.shift();
         } else {
             console.log("ControlFerry: Given ID does not match top of priorityQueue");

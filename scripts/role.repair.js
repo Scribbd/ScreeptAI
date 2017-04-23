@@ -1,9 +1,10 @@
+var helperCreeps = require('helper.creeps');
 /**
  * taskID
- */ 
+ */
 
 var roleRepair = {
-    
+
     run: function(creep) {
         if(creep.memory.repairing && creep.carry.energy == 0) {
             creep.memory.repairing = false;
@@ -17,8 +18,8 @@ var roleRepair = {
 	        creep.say("\\o.o/ done!");
 	        delete creep.memory.taskID;
 	    }
-	    
-	    
+
+
 	    if(creep.memory.repairing) {
 	        //Continue repairing job
 	        if (creep.memory.taskID != null) {
@@ -26,7 +27,7 @@ var roleRepair = {
 	            if (creep.repair(target) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
-	        } 
+	        }
 	        else {
 	            //Get job if none is given
 	            var targets = creep.room.find(FIND_STRUCTURES, {
@@ -46,7 +47,7 @@ var roleRepair = {
 	        var sources = creep.room.find(FIND_SOURCES);
             if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-            } 
+            }
 	    }
     }
 };

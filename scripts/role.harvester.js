@@ -6,10 +6,10 @@ var helperTerrain = require('helper.terrain');
  * A stationairy miner
  */
 var roleHarvester = {
-    
+
     'typeID': 'harvester',
     'typeBuild': [MOVE,WORK,WORK,WORK,WORK,CARRY,CARRY],
-    
+
     run: function(creep) {
         // Acquire target for the first time.
         if (creep.memory.state == null) {
@@ -27,7 +27,7 @@ var roleHarvester = {
                 console.log(JSON.stringify(Game.getObjectById(creep.memory.target)));
                 controlEnergy.claimSource(Game.getObjectById(creep.memory.target));
                 creep.memory.state = 'move'; //>>ADVANCE STATE DEPLOY
-            } 
+            }
             // FAIL STATE
             else {
                 creep.say('None found?');
@@ -72,17 +72,17 @@ var roleHarvester = {
             } else {
                 //Place site
                 var relPos = helperTerrain.getDif(creep.pos, Game.getObjectById(creep.memory.target).pos);
-                
+
                 creep.room.createConstructionSite(helperTerrain.getInv(relPos), STRUCTURE_CONTAINER);
             }
             creep.memory.state = 'build'; //>> ADVANCE STATE BUILD
-            
+
         }
         // STATE BUILD
         else if(creep.memory.state == 'build') {
             if(creep.memory.container != ERR_NOT_FOUND) {
                 var container = Game.getObjectById(creep.memory.container);
-                
+
                 //PHASE CONSTRUCT
                 if(creep.memory.phase == 'construct') {
                     creep.build(container);
@@ -145,7 +145,7 @@ var roleHarvester = {
             if (Game.getObjectById(creep.memory.container).hits >= Game.getObjectById(creep.memory.container).hitsMax) {
                 creep.memory.state = 'harvest'; //>> ADVANCE STATE HARVEST
             }
-            
+
         }
         // STATE IDLE
         else if(creep.memory.state == 'idle') {
@@ -156,13 +156,13 @@ var roleHarvester = {
             if(Game.flags['FailFlag'] != null) {
                 creep.moveTo(Game.flags['FailFlag'].pos, {visualizePathStyle: {stroke: '#ffffff'}});
             } else {
-                creep.say('FAILSTATE');    
+                creep.say('FAILSTATE');
             }
         }
     },
-    
+
     onDeath: function(creep) {
-        
+
     }
 };
 

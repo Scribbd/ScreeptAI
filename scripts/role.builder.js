@@ -1,7 +1,10 @@
+var controlEnergy = require('control.energy')
+
 var roleBuilder = {
-    
-    'typeID': 'builder',
-    'typeBuild': [CARRY, CARRY, MOVE, WORK, WORK],
+
+    'typeName': 'builder',
+    'typeBuild1': [CARRY, MOVE, WORK]
+    'typeBuild2': [CARRY, CARRY, MOVE, MOVE, WORK, WORK],
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -36,5 +39,8 @@ var roleBuilder = {
 	    }
 	}
 };
+
+helperCreeps.submitCreepBuild(roleBuilder.typeName, roleBuilder.typeBuild1, 1);
+helperCreeps.submitCreepBuild(roleBuilder.typeName, roleBuilder.typeBuild2, 2);
 
 module.exports = roleBuilder;
