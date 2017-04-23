@@ -1,6 +1,11 @@
 var roleCommon = {
+
     run: function(creep) {
         // Report and act on Death
+        if(creep.memory.keepMemory === undefined) {
+            creep.memory.keepMemory = true;
+        }
+
         if(creep.ticksToLive <= 1) {
             console.log('Creep is near death: ', creep.name);
             creep.say('I am dying! >_<');

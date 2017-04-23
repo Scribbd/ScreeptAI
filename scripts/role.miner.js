@@ -1,19 +1,16 @@
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('role.miner');
- * mod.thing == 'a thing'; // true
- */
+var helperCreeps = require('helper.creeps');
 
 var roleMiner = {
-    
+
+    'typeID': 'ferry',
+    'typeBuild1': [CARRY, MOVE, WORK]
+    'typeBuild2': [CARRY, CARRY, MOVE, MOVE, WORK, WORK],
+
     /** @param {Creep} creep **/
     run: function(creep) {
         //Information
-        
-        
+
+
         //From tutorial
 	    if(creep.carry.energy < creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
@@ -42,5 +39,8 @@ var roleMiner = {
         }
 	}
 };
+
+helperCreeps.submitCreepBuild(roleMiner.typeName, roleMiner.typeBuild1, 1);
+helperCreeps.submitCreepBuild(roleMiner.typeName, roleMiner.typeBuild2, 2);
 
 module.exports = roleMiner;

@@ -1,0 +1,25 @@
+empire
+  rooms
+    spawners
+    status
+    energy
+      sources
+        availableSpots
+        claimedSpots
+      containers
+    spawnQueue []
+        name
+        role
+        build
+    ferry
+      priorityQueue []
+        jobType
+        jobTarget
+      minions
+  control
+    count
+    empireInterval
+    energyShift
+    energyInterval
+    ferryShift
+    ferryInterval
