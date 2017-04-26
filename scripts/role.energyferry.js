@@ -21,7 +21,7 @@ var roleEnergyFerry = {
         //Logic!
         //STATE SEARCH
         else if(creep.memory.state == 'search') {
-            
+
         }
         //STATE FERRY
         else if(creep.memory.state == 'ferry') {
@@ -43,7 +43,7 @@ var roleEnergyFerry = {
                 }
             }
         }
-        //STATE PRIORITY
+        /*/STATE PRIORITY
         else if(creep.memory.state == 'priority') {
             var priority = Game.getObjectById(creep.memory.priorityContainter);
 
@@ -62,7 +62,7 @@ var roleEnergyFerry = {
                 controlFerry.clear
                 creep.memory.state = 'ferry';
             }
-        }
+        }*/
         //STATE FAIL
         else {
             if(Game.flags['FailFlag'] != null) {
